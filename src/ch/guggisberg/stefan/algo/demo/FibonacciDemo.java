@@ -23,8 +23,8 @@ public class FibonacciDemo {
 		// ======================
 
 		// Memoizing
-		FibonacciMemoizing fm = new FibonacciMemoizing();
-		System.out.println("Die Berechnung mit Memoizing ergibt: " + fm.findFibonacciValue(input));
+		FibonacciMemoizing fm = new FibonacciMemoizing(input);
+		System.out.println("Die Berechnung mit Memoizing ergibt: " + fm.findFibonacciValue());
 
 		// Sequenziell
 
