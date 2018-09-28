@@ -69,7 +69,7 @@ public class FibonacciDemo {
 
 		System.out.println();
 		stopWatch.reset();
-		// Ab wann ist welche Methode besser?
+		// Ab wann ist welche Methode besser? n0??
 		for (Integer n=2;  n<25; n++ ) {
 			stopWatch.start();
 			FibonacciMemoizing fmem = new FibonacciMemoizing(n);
@@ -95,9 +95,9 @@ public class FibonacciDemo {
 			System.out.println("************************************************************");
 			System.out.println("Fibonacci Position n = " + n +" wird sequenziell in " + timeSeqe + "[ns] gefunden und mit Memoizig in " + timeMem + "[ns]"+  ",mit MultiThreading " + timeMulti+" Wert ist :" + fNumberMem ) ;
 
-			if (timeMem<timeSeqe) System.out.println("Methode Memoizing ist schneller!");
-			else if (timeMem.equals(timeSeqe)) System.out.println("Beide waren geleich schnell! ");
-			else System.out.println("Methode Sequenziell ist schneller!");
+			if (timeMem<=timeSeqe && timeMem<=timeMulti) System.out.println("Methode Memoizing ist schneller!");
+			else if (timeSeqe<=timeMulti && timeSeqe <= timeMem) System.out.println("Methode Sequenztiell ist schneller!");
+			else System.out.println("Methode Multithreading ist schneller!");
 		}
 
 		System.out.println();
