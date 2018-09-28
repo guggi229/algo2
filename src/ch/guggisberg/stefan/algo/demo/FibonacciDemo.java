@@ -6,6 +6,7 @@ package ch.guggisberg.stefan.algo.demo;
 import org.apache.commons.lang3.time.StopWatch;
 import ch.guggisberg.stefan.algo.DivideAndConquerable;
 import ch.guggisberg.stefan.algo.FibonacciMemoizing;
+import ch.guggisberg.stefan.algo.FibonacciMultiThreading;
 import ch.guggisberg.stefan.algo.FibonacciSequence;
 
 public class FibonacciDemo {
@@ -64,14 +65,14 @@ public class FibonacciDemo {
 			stopWatch.stop();
 			Long timeMem= stopWatch.getNanoTime();
 			stopWatch.reset();
-			
+
 			stopWatch.start();
 			DivideAndConquerable<Integer> fs = new FibonacciSequence(n);
 			Integer fNumberSeq = fs.divideAndConquer();
 			stopWatch.stop();
 			Long timeSeqe= stopWatch.getNanoTime();
 			stopWatch.reset();
-			
+
 			System.out.println("************************************************************");
 			System.out.println("Fibonacci Position n = " + n +" wird sequenziell in " + timeSeqe + "[ns] gefunden und mit Memoizig in " + timeMem + "[ns] Wert ist :" + fNumberMem) ;
 
@@ -79,5 +80,30 @@ public class FibonacciDemo {
 			else if (timeMem.equals(timeSeqe)) System.out.println("Beide waren geleich schnell! ");
 			else System.out.println("Methode Sequenziell ist schneller!");
 		}
+
+		System.out.println();
+		stopWatch.reset();
+		// Ab wann ist welche Methode besser?
+		for (Integer n=2;  n<30; n++ ) {
+			stopWatch.start();
+			FibonacciMemoizing fmem = new FibonacciMemoizing(n);
+			Integer fNumberMem = fmem.findFibonacciValue();
+			stopWatch.stop();
+			Long timeMem= stopWatch.getNanoTime();
+			stopWatch.reset();
+
+			stopWatch.start();
+			DivideAndConquerable<Integer> fs = new FibonacciSequence(n);
+			Integer fNumberSeq = fs.divideAndConquer();
+			stopWatch.stop();
+			Long timeSeqe= stopWatch.getNanoTime();
+			stopWatch.reset();
+
+			// CSV Textausgabe
+			System.out.println( n +" ; " + timeSeqe + "; " + timeMem + " ; " + fNumberMem) ;
+
+
+		}
+
 	}
 }
