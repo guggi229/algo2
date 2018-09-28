@@ -47,6 +47,17 @@ public class FibonacciDemo {
 		Long timeSeq= stopWatch.getNanoTime();
 		stopWatch.reset();
 
+
+		// MultiThreading
+		stopWatch.start();
+		FibonacciMultiThreading fmt = new FibonacciMultiThreading(input);
+		Integer fibofmt = fmt.findFibonacciValue();
+		stopWatch.stop();
+		Long timefmt= stopWatch.getNanoTime();
+		stopWatch.reset();
+
+
+
 		// Anzeige
 		// =======
 
@@ -54,6 +65,7 @@ public class FibonacciDemo {
 		System.out.println("Fibonacci Position : n = " +input);
 		System.out.println("Berechnung mit einer Sequenzieller Methode: " + fiboSeq + " Benötigte Zeit[ns]: " + timeSeq);
 		System.out.println("Berechnung mit einer Memoizing Methode: " + fiboMemoizing + " Benötigte Zeit[ns]: " + timeMemoizing);
+		System.out.println("Berechnung mit einer MultiThreading Methode: " + fibofmt + " Benötigte Zeit[ns]: " + timefmt);
 
 		System.out.println();
 		stopWatch.reset();
@@ -73,8 +85,15 @@ public class FibonacciDemo {
 			Long timeSeqe= stopWatch.getNanoTime();
 			stopWatch.reset();
 
+			stopWatch.start();
+			FibonacciMultiThreading fMulti = new FibonacciMultiThreading(n);
+			Integer fNumberMulti = fMulti.findFibonacciValue();
+			stopWatch.stop();
+			Long timeMulti= stopWatch.getNanoTime();
+			stopWatch.reset();
+
 			System.out.println("************************************************************");
-			System.out.println("Fibonacci Position n = " + n +" wird sequenziell in " + timeSeqe + "[ns] gefunden und mit Memoizig in " + timeMem + "[ns] Wert ist :" + fNumberMem) ;
+			System.out.println("Fibonacci Position n = " + n +" wird sequenziell in " + timeSeqe + "[ns] gefunden und mit Memoizig in " + timeMem + "[ns]"+  ",mit MultiThreading " + timeMulti+" Wert ist :" + fNumberMem ) ;
 
 			if (timeMem<timeSeqe) System.out.println("Methode Memoizing ist schneller!");
 			else if (timeMem.equals(timeSeqe)) System.out.println("Beide waren geleich schnell! ");
@@ -84,12 +103,19 @@ public class FibonacciDemo {
 		System.out.println();
 		stopWatch.reset();
 		// Ab wann ist welche Methode besser?
-		for (Integer n=2;  n<30; n++ ) {
+		for (Integer n=2;  n<25; n++ ) {
 			stopWatch.start();
 			FibonacciMemoizing fmem = new FibonacciMemoizing(n);
 			Integer fNumberMem = fmem.findFibonacciValue();
 			stopWatch.stop();
 			Long timeMem= stopWatch.getNanoTime();
+			stopWatch.reset();
+
+			stopWatch.start();
+			FibonacciMultiThreading fMulti = new FibonacciMultiThreading(n);
+			Integer fNumberMulti = fMulti.findFibonacciValue();
+			stopWatch.stop();
+			Long timeMulti= stopWatch.getNanoTime();
 			stopWatch.reset();
 
 			stopWatch.start();
@@ -100,7 +126,7 @@ public class FibonacciDemo {
 			stopWatch.reset();
 
 			// CSV Textausgabe
-			System.out.println( n +" ; " + timeSeqe + "; " + timeMem + " ; " + fNumberMem) ;
+			System.out.println( n +" ; " + timeSeqe + "; " + timeMem  + ";" +timeMulti + " ; " + fNumberMem) ;
 
 
 		}

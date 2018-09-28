@@ -12,14 +12,14 @@ public class Fibonacci {
 		try {
 			num = Integer.parseInt(args[0]);
 		} catch (Exception e) {
-			System.out.println("first argument must be a whole number");
+			System.out.println("Falsche Eingabe");
 			System.exit(-1);
 		}
 		if (num <= 2) {
 			out = 1;
 		}
 		else {
-			ExecutorService pool = Executors.newFixedThreadPool(2);
+			ExecutorService pool = Executors.newFixedThreadPool(8);
 			Callable<Integer> t1 = new FibonacciCallable(num-1);
 			Callable<Integer> t2 = new FibonacciCallable(num-2);
 			Future<Integer> future1 = pool.submit(t1);
