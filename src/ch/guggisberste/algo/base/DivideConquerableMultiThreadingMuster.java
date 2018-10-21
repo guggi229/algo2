@@ -25,16 +25,16 @@ public interface DivideConquerableMultiThreadingMuster<T> extends DivideAndConqu
 
 		// Callable<Integer> callableObj = () -> 2+2;
 
-		subcomponents.forEach (subcomponent -> intermediateResults.add (
+	//	subcomponents.forEach (subcomponent -> intermediateResults.add (
 // Future task?
-						
-				Callable<T> callableCode = () -> subcomponent.divideAndConquer();
+
+				//Callable<T> callableCode = () -> subcomponent.divideAndConquer();
 				//Thread t = new Thread(callableCode);
 				//t.start();
 
-				));
+//				));
 
-		helperList.add(t);
+	//	helperList.add(t);
 
 		return recombine (intermediateResults);
 	}
